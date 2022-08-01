@@ -1,14 +1,17 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
 public class OmniDrivetrain {
-    private DcMotor leftMotor;
-    private DcMotor rightMotor;
-    private DcMotor strifeMotor;
+    private DcMotorEx leftMotor;
+    private DcMotorEx rightMotor;
+    private DcMotorEx strifeMotor;
     private HardwareMap hardwareMap;
 
     public OmniDrivetrain(OpMode opMode) {
@@ -16,9 +19,9 @@ public class OmniDrivetrain {
     }
 
     public void init() {
-        leftMotor = this.hardwareMap.get(DcMotor.class, "left");
-        rightMotor = this.hardwareMap.get(DcMotor.class, "right");
-        strifeMotor = this.hardwareMap.get(DcMotor.class, "strife");
+        leftMotor = this.hardwareMap.get(DcMotorEx.class, "left");
+        rightMotor = this.hardwareMap.get(DcMotorEx.class, "right");
+        strifeMotor = this.hardwareMap.get(DcMotorEx.class, "strife");
 
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -32,4 +35,9 @@ public class OmniDrivetrain {
         rightMotor.setPower(right);
         strifeMotor.setPower(strife);
     }
+
+    public double getLeftVelocity() { return leftMotor.getVelocity(AngleUnit.RADIANS);}
+    public double getRightVelocity() { return rightMotor.getVelocity(AngleUnit.RADIANS);}
+    public double getStrifeVelocity() { return strifeMotor.getVelocity(AngleUnit.RADIANS); }
+
 }

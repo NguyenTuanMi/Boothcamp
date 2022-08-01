@@ -36,6 +36,13 @@ public class Robot {
     }
 
     public void loop() {
+        TankDriveController();
+        updateTank();
+
+        imu.updateAccel();
+        imu.updateAngleOrientation();
+        imu.updateAngularVelocity();
+
         this.telemetry.addData("IMU yaw value", imu.getYaw());
         this.telemetry.addData("IMU roll value", imu.getRoll());
         this.telemetry.addData("IMU pitch value", imu.getPitch());
@@ -60,10 +67,22 @@ public class Robot {
         rightPowerMode = axial - yaw;
         strifePowerMode = lateral;
 
-        omni.drive(leftPowerMode, rightPowerMode, lateral);
+        omni.drive(leftPowerMode, rightPowerMode, strifePowerMode);
     }
 
     public void TankDriveController() {
         drivetrain.setSpeed(this.gamepad.right_stick_y, this.gamepad.left_stick_y);
+    }
+
+    public void updateOmni() {
+        this.telemetry.addData("Left velocity", this.omni.getLeftVelocity());
+        this.telemetry.addData("Right velocity", this.omni.getRightVelocity());
+        this.telemetry.addData("Strife velocity", this.omni.getStrifeVelocity());
+        this.telemetry.update();
+    }
+
+    public void updateTank() {
+        this.telemetry.addData("Left velocity", this.drivetrain.getLeftVelocity());
+        this.telemetry.addData("Right velocity", this.drivetrain.getRightVelocity());
     }
 }

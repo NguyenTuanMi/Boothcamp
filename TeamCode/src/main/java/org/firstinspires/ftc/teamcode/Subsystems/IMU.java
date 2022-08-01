@@ -50,9 +50,9 @@ public class IMU {
         return angle;
     }
 
-    public Acceleration getAccel() {
-        return accel;
-    }
+    //public Acceleration getAccel() {
+    //    return accel;
+    //}
 
     public float getYaw() {
         return getAngleOrientation().thirdAngle;
