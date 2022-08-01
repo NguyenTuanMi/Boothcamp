@@ -8,14 +8,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-public class Drivebase {
+public class Drivetrain {
     private DcMotorEx leftMaster;
     private DcMotorEx rightMaster;
     private DcMotorEx leftFollow;
     private DcMotorEx rightFollow;
     private HardwareMap hardwareMap;
 
-    public Drivebase (OpMode opMode) {
+    public Drivetrain(OpMode opMode) {
         this.hardwareMap = opMode.hardwareMap;;
     }
 
